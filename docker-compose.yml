@@ -282,7 +282,7 @@ services:
       - homepage.description=Bittorrent client
       - homepage.weight=2
       - homepage.widget.type=qbittorrent
-      - homepage.widget.url=http://vpn:8080
+      - homepage.widget.url=http://qbittorrent:8080
       - homepage.widget.username=${QBITTORRENT_USERNAME}
       - homepage.widget.password=${QBITTORRENT_PASSWORD}
   unpackerr:
@@ -320,7 +320,7 @@ services:
       - CONTENTBLOCKER__IGNORED_DOWNLOADS_PATH=/usr/ignored.txt
       - TRIGGERS__CONTENTBLOCKER=0 0 0/1 * * ?
       - DOWNLOAD_CLIENT=qBittorrent
-      - QBITTORRENT__URL=http://vpn:8080
+      - QBITTORRENT__URL=http://qbittorrent:8080
       - QBITTORRENT__PASSWORD=${QBITTORRENT_PASSWORD}
       - SONARR__ENABLED=true
       - SONARR__BLOCK__PATH=/usr/blacklist.json
