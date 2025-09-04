@@ -14,9 +14,6 @@ services:
       - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
       - --entrypoints.web-secure.address=:443
-      - --entrypoints.web.http.redirections.entryPoint.to=web-secure
-      - --entrypoints.web.http.redirections.entryPoint.scheme=https
-      - --entrypoints.web.http.redirections.entrypoint.permanent=true
       - --experimental.plugins.rewrite-body.modulename=github.com/packruler/rewrite-body
       - --experimental.plugins.rewrite-body.version=v1.2.0
       - --experimental.plugins.rewriteHeaders.modulename=github.com/XciD/traefik-plugin-rewrite-headers
@@ -379,6 +376,8 @@ services:
       retries: 10
     labels:
       - traefik.enable=true
+      - traefik.http.routers.jellyfin-unsecure.rule=(Host(`${HOSTNAME}`) && PathPrefix(`/jellyfin`))
+      - traefik.http.routers.jellyfin-unsecure.entrypoints=web
       - traefik.http.routers.jellyfin.rule=(Host(`${HOSTNAME}`) && PathPrefix(`/jellyfin`))
       - traefik.http.routers.jellyfin.tls=true
       - traefik.http.routers.jellyfin.tls.certresolver=myresolver
